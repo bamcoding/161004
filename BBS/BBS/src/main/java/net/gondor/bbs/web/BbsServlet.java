@@ -30,7 +30,6 @@ public class BbsServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		List<BbsVO> bbsVOs = dao.getAllBbs();
-		
 		String viewPath = "/WEB-INF/view/bbs.jsp";
 		String writeBbs = "/WEB-INF/view/writeBbs.jsp";		
 		RequestDispatcher rd = request.getRequestDispatcher(viewPath); 
