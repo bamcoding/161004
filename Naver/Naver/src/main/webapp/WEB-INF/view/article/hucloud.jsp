@@ -1,16 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <link rel="stylesheet" type="text/css" href="/Naver/css/layout.css">
+<script type="text/javascript" src="/Naver/js/jquery-3.1.1.js"></script>
+<script type="text/javascript">
+	$().ready(function() {
+		$("#logout").click(function() {
+			if (confirm("로그아웃 하시겠습니까?")) {
+				location.href = "/Naver/doLogout";
+			}
+		});
+	});
+</script>
 <title>HuCloud : 네이버 카페</title>
 </head>
-<body style="background:white">
+<body style="background: white">
 	<div>
 		<!-- body -->
 		<div id="wrapper">
@@ -18,32 +26,37 @@
 			<div id="menu_top" style="text-align: right; margin-right: 5px">
 				<!-- right -->
 				<div>
-					<div style="display: inline-block;">
+					<div class="block">
 						<a href="http://www.naver.com">네이버</a>
 					</div>
 					<img style="height: 13px" src="/Naver/img/menu_top2.png">
-					<div style="display: inline-block;">
+					<div class="block">
 						<a href="http://cafe.naver.com">카페</a> <img style="height: 13px"
 							src="/Naver/img/menu_top1.png">
 					</div>
 					<img style="height: 13px" src="/Naver/img/menu_top2.png">
-					<div style="display: inline-block;">
+					<div class="block">
 						<a href="http://www.naver.com">가입카페</a> <img style="height: 13px"
 							src="/Naver/img/menu_top1.png">
 					</div>
 					<img style="height: 13px" src="/Naver/img/menu_top2.png">
-					<div style="display: inline-block;">
-						<input id="loginbtn" type="button" value="로그인">
-						<div id="etc">
-							<img src="/Naver/img/menu_top3.png">
-						</div>
+					<div class="block">
+						<c:if test="${not empty user }">
+							<div class="block">${user.name }
+								: <span id="point">${user.point }</span>pt
+							</div>
+							<div class="block">
+								<input id="logout" type="button" value="로그아웃">
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>
 
 			<!-- title image -->
 			<div style="text-align: center;" id="title">
-				<a href="/Naver/article/viewList"><img src="/Naver/img/title.png"></a>
+				<a href="/Naver/article/viewList"><img
+					src="/Naver/img/title.png"></a>
 			</div>
 			<!-- menu middle -->
 			<div id="middle_menus">
@@ -75,10 +88,9 @@
 				<div id="left_side">
 					<div id="left_side1">카페정보</div>
 					<div id="left_side2">
-						<input id="writeBtn" type="button" 
-						style="width:100%;height:40px;border:1px solid black;border-radius: 5px;
-						font-size:15px;background:#666;color:white;font-weight: bold;"
-						onclick="location.href='./write'" value="카페 글쓰기" />
+						<input id="writeBtn" type="button"
+							style="width: 100%; height: 40px; border: 1px solid black; border-radius: 5px; font-size: 15px; background: #666; color: white; font-weight: bold;"
+							onclick="location.href='./write'" value="카페 글쓰기" />
 					</div>
 					<div id="left_side3">메뉴목록</div>
 					<div id="left_side4">광고</div>
@@ -99,14 +111,13 @@
 								<td>좋아요</td>
 							</tr>
 							<tr>
-								<th colspan=6><img src="/Naver/img/th.png" ; id="th_icon" /> 이근재가 만든
-									게시판 입니다.</th>
+								<th colspan=6><img src="/Naver/img/th.png" ; id="th_icon" />
+									이근재가 만든 게시판 입니다.</th>
 							</tr>
 							<c:forEach items="${articles}" var="article">
 								<tr>
-									<td ><img src="/Naver/img/td.png" id="td_icon" /></td>
-									<td style="width:40%">
-									<a href="./detail?id=${article.id}">${article.title}</a></td>
+									<td><img src="/Naver/img/td.png" id="td_icon" /></td>
+									<td style="width: 40%"><a href="./detail?id=${article.id}">${article.title}</a></td>
 									<td>${article.userId}</td>
 									<td>${article.createdDate }</td>
 									<td>${article.hitCount}</td>
@@ -120,8 +131,8 @@
 				<div id="right_side">
 					<div id="right_side1">
 						날씨날짜
-						<div style="display: inline-block;">날씨</div>
-						<div style="display: inline-block;">날짜</div>
+						<div class="block">날씨</div>
+						<div class="block">날짜</div>
 					</div>
 					<div id="right_side2">시간</div>
 					<div id="right_side3">

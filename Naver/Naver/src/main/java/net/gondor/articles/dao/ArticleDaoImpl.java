@@ -143,4 +143,33 @@ public class ArticleDaoImpl extends DaoSupport implements ArticleDao{
 		});
 	}
 
+	@Override
+	public void updateHitCount(String id) {
+		updateTable(new Query(){
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE 	ARTICLES ");
+				query.append(" SET HIT_CNT=HIT_CNT+1 ");
+				query.append(" WHERE	ATCL_ID=? ");
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, id);
+				return pstmt;
+			}
+		});
+	}
+
+	@Override
+	public int updateRecommand(String id) {
+		return updateTable(new Query(){
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE 	ARTICLES ");
+				query.append(" SET RCMD_CNT=RCMD_CNT+1 ");
+				query.append(" WHERE	ATCL_ID=? ");
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setString(1, id);
+				return pstmt;
+			}
+		});
+	}
 }

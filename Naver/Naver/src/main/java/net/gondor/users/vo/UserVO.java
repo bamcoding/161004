@@ -11,7 +11,14 @@ public class UserVO {
 	private String name;
 	private String nickName;
 	private String createdDate;
+	private int point;
 	
+	public int getPoint() {
+		return point;
+	}
+	public void setPoint(int point) {
+		this.point = point;
+	}
 	public String getNickName() {
 		return nickName;
 	}

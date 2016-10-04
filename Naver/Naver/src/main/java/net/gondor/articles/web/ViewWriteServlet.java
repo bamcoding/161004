@@ -7,8 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import net.gondor.constants.Session;
 import net.gondor.support.Param;
+import net.gondor.users.vo.UserVO;
 
 /**
  * Servlet implementation class ViewWriteServlet
@@ -38,8 +41,12 @@ public class ViewWriteServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String error = param.getStringParam(request, "error");
+		HttpSession session = request.getSession();
+		UserVO user = (UserVO)session.getAttribute(Session.SESSION_INFO);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/write.jsp");
 		request.setAttribute("error", error);
+		request.setAttribute("user", user);
 		rd.forward(request, response);
 	}
 

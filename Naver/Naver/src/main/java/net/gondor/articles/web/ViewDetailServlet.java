@@ -44,7 +44,7 @@ public class ViewDetailServlet extends HttpServlet {
 		String id = param.getStringParam(request, "id");
 		//에러 잘못된 선택입니다.
 		
-		ArticleVO article = biz.getArticle(id);
+		ArticleVO article = biz.getArticle(id, request);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/article/detail.jsp");
 		request.setAttribute("article", article);

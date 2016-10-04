@@ -14,4 +14,7 @@ public interface ArticleDao {
 	public ArticleVO getArticle(String id);
 	public int writeArticle(ArticleVO article);
 	public void deleteArticle(String id);
+	
+	public void updateHitCount(String id);
+	public int updateRecommand(String id);
 }

@@ -26,7 +26,6 @@ public class UserBizImpl implements UserBiz {
 	@Override
 	public boolean logIn(UserVO user, HttpServletRequest request) {
 		UserVO userInfo = dao.getUserBy(user);
-
 		// NullPointerException 발생 방지하기 위함 원래는 userInfo.getUserId().length() > 0
 		// 만 해주면됨!
 		if (userInfo != null && userInfo.getId() != null && userInfo.getId().length() > 0) {
@@ -41,6 +40,11 @@ public class UserBizImpl implements UserBiz {
 	public boolean isExistsUserId(String nickName) {
 		int count = dao.countUserId(nickName);
 		return count > 0;
+	}
+
+	@Override
+	public boolean addPoint(String id, int value) {
+		return dao.addPoint(id, value)>0;
 	}
 
 }

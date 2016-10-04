@@ -10,4 +10,5 @@ public interface UserBiz {
 	public boolean logIn(UserVO user, HttpServletRequest request);
 
 	public boolean isExistsUserId(String id); 
+	public boolean addPoint(String id, int value);
 }

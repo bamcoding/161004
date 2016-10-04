@@ -21,12 +21,12 @@ public class UserDaoImpl extends DaoSupport implements UserDao{
 				StringBuffer query = new StringBuffer();
 				query.append(" INSERT INTO USRS ( ");
 				query.append("    USR_ID, USR_PWD, USR_NM, ");
-				query.append("    CRT_DT, USR_NICK) ");
+				query.append("    CRT_DT, USR_NICK, USR_POINT) ");
 				query.append(" VALUES ( 'US-'||TO_CHAR(SYSDATE,'YYYYMMDD')||'-'||LPAD(ATCL_ID_SEQ.NEXTVAL,6,0), ");
 				query.append("  ?, ");
 				query.append("  ?, ");
 				query.append("  SYSDATE, ");
-				query.append("  ?) ");
+				query.append("  ?, 100) ");
 				PreparedStatement pstmt = conn.prepareStatement(query.toString());
 				pstmt.setString(1, userVO.getPassword());
 				pstmt.setString(2, userVO.getName());
@@ -46,7 +46,7 @@ public class UserDaoImpl extends DaoSupport implements UserDao{
 			public PreparedStatement query(Connection conn) throws SQLException {
 				StringBuffer query = new StringBuffer();
 				query.append(" SELECT USR_ID, USR_PWD, USR_NM, ");
-				query.append("    TO_CHAR(CRT_DT, 'YYYY-MM-DD HH24:MI:SS' ) CRT_DT, USR_NICK ");
+				query.append("    TO_CHAR(CRT_DT, 'YYYY-MM-DD HH24:MI:SS' ) CRT_DT, USR_NICK,USR_POINT ");
 				query.append(" FROM USRS ");
 				query.append(" WHERE USR_NICK=? AND USR_PWD=? ");
 				PreparedStatement pstmt = conn.prepareStatement(query.toString());
@@ -66,6 +66,7 @@ public class UserDaoImpl extends DaoSupport implements UserDao{
 					user.setPassword(rs.getString("USR_PWD"));
 					user.setName(rs.getString("USR_NM"));
 					user.setCreatedDate(rs.getString("CRT_DT"));
+					user.setPoint(rs.getInt("USR_POINT"));
 				}
 				return user;
 			}
@@ -98,6 +99,24 @@ public class UserDaoImpl extends DaoSupport implements UserDao{
 				return count;
 			}
 			
+		});
+	}
+
+	@Override
+	public int addPoint(String id, int value) {
+		return updateTable(new Query(){
+
+			@Override
+			public PreparedStatement query(Connection conn) throws SQLException {
+				StringBuffer query = new StringBuffer();
+				query.append(" UPDATE USRS ");
+				query.append(" SET USR_POINT= USR_POINT + ? ");
+				query.append(" WHERE USR_ID=? ");
+				PreparedStatement pstmt = conn.prepareStatement(query.toString());
+				pstmt.setInt(1, value);
+				pstmt.setString(2, id);
+				return pstmt;
+			}
 		});
 	}
 

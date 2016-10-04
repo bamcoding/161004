@@ -9,6 +9,16 @@
 	background:#1fbc02;
 	border:0px;
 }
+
+#likeBtn{
+	font-weight: bold; 
+	font-size: 20px;
+	vertical-align:middle;
+	border:1px solid #ccc;
+	padding:5px;
+	border-radius:3px;
+}
+
 .join_input{
 	border-top:1px solid #dadada;
 	padding-bottom:5px;
@@ -173,6 +183,17 @@ table td {
 	background-color:#588bc5;
 	color:white;
 }
+#logout {
+	vertical-align:top;
+	padding:2px;
+	text-align:center;
+	width:70px;
+	border: 1px solid #214b7d;
+	border-radius: 4px;
+	background-color:#588bc5;
+	color:white;
+}
+
 
 #writebtn {
 	width:100%;

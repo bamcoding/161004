@@ -64,7 +64,7 @@ public class DoWriteServlet extends HttpServlet {
 		article.setContent(content);
 		article.setUserId(userNickname);
 		
-		boolean isSuccess = biz.writeArticle(article);
+		boolean isSuccess = biz.writeArticle(article, request);
 		if(isSuccess){
 			response.sendRedirect("./viewList");
 		}	

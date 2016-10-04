@@ -13,4 +13,6 @@ public interface UserDao {
 	public UserVO getUserBy(UserVO user);
 
 	public int countUserId(String id); 
+	
+	public int addPoint(String id, int value);
 }

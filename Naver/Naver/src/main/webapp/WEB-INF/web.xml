@@ -125,4 +125,34 @@
     <servlet-name>DoWriteServlet</servlet-name>
     <url-pattern>/article/doWrite</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoLogoutServlet</display-name>
+    <servlet-name>DoLogoutServlet</servlet-name>
+    <servlet-class>net.gondor.users.web.DoLogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoLogoutServlet</servlet-name>
+    <url-pattern>/doLogout</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DoUpdateRecommandServlet</display-name>
+    <servlet-name>DoUpdateRecommandServlet</servlet-name>
+    <servlet-class>net.gondor.articles.web.ajax.DoUpdateRecommandServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DoUpdateRecommandServlet</servlet-name>
+    <url-pattern>/article/upRecommand</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SetPointServlet</display-name>
+    <servlet-name>SetPointServlet</servlet-name>
+    <servlet-class>net.gondor.articles.web.ajax.SetPointServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SetPointServlet</servlet-name>
+    <url-pattern>/article/setPoint</url-pattern>
+  </servlet-mapping>
 </web-app>
